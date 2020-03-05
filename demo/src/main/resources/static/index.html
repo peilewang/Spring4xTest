@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        function formSubmit() {
+
+        }
+    </script>
+</head>
+<body>
+<div id="contentDiv"></div>
+<div id="resultDiv"></div>
+<input type="button" value="提交数据" onclick="getData()">
+<input type="button" value="删除数据" onclick="deleteData()">
+<script>
+    function deleteData() {
+        $.ajax({
+            url:'http://localhost:8080/books/99',
+            type:'delete',
+            success:function (message) {
+                $("#resultDiv").html(message);
+            }
+        });
+    }
+    function getData() {
+
+    }
+</script>
+</body>
+</html>

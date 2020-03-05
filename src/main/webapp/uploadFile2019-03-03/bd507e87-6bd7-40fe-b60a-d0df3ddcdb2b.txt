@@ -1,0 +1,195 @@
+seajs.use
+用来在页面中加载一个或多个模块。seajs.use(id, callback?)
+
+// 加载一个模块
+seajs.use('./a');
+// 加载一个模块，在加载完成时，执行回调
+seajs.use('./a', function(a) {
+ a.doSomething();
+});
+ // 加载多个模块，在加载完成时，执行回调
+seajs.use(['./a', './b'], function(a, b) {
+ a.doSomething();
+ b.doSomething();
+});
+http://www.jb51.net/article/97308.html
+https://blog.csdn.net/lfsf802/article/details/26758567
+prefix suffix是spring MVC试图解析器的一个属性，
+prefix ： 是指访问页面的前缀，指定页面存放的文件夹
+suffix ： 是指文件的后缀名，常见的后缀名有html,jsp,php,txt,mp3
+读取Spring的配置文件applicationContext.xml的5种方法
+http://www.cnblogs.com/sprinng/p/5622600.html
+1.利用ClassPathXmlApplicationContext，这种方式配置文件应该放在类包同路径下
+Java代码：
+ApplicationContext ct=new ClassPathXmlApplicationContext("applicationContext01.xml");
+ct.getBean("");
+2.利用FileSystemXmlApplicationContext,这种方法可以将配置文件放在工程的直接目录下
+Java代码：
+
+ApplicationContext ct=new FileSystemXmlApplicationContext("applicationContext01.xml");
+ct.getBean("");
+3.显式给出配置文件的绝对路径，我们假定配置文件位于工程主目录中的conf文件夹中
+Java代码：
+
+String path=System.getProperty("user.dir");
+ApplicationContext ct=new FileSystemXmlApplicationContext(path+"//conf//applicationContext01.xml");
+ct.getBean("")
+Resource rs=new FileSystemResource("applicationContext01.xml");
+BeanFactory ct=new XmlBeanFactory(rs);
+ct.getBean("");
+4.利用FileSystemResource，可以将配置文件放在工程直接目录下
+Java代码：
+
+Resource rs=new FileSystemResource("applicationContext01.xml");
+BeanFactory ct=new XmlBeanFactory(rs);
+ct.getBean("");
+5.显式给出配置文件的绝对路径，我们假定配置文件位于工程主目录中的conf文件夹中
+Java代码：
+
+String path=System.getProperty("user.dir");
+Resource rs=new FileSystemResource(path+"//conf//applicationContext01.xml");
+BeanFactory ct=new XmlBeanFactory(rs);
+ct.getBean("");
+Spring常用注解
+https://blog.csdn.net/archer119/article/details/51606426
+https://blog.csdn.net/iloveyin/article/details/51019139
+1、@controller 控制器（注入服务）
+2、@service 服务（注入dao）
+3、@repository dao（实现dao访问）
+4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的<bean id="" class=""/>）
+默认情况下，从 bean工厂所取得的实例为Singleton（bean的singleton属性） Singleton: Spring容器只存在一个共享的bean实例，默认的配置。 Prototype: 每次对bean的请求都会创建一个新的bean实例。 二者选择的原则：有状态的bean都使用Prototype作用域，而对无状态的bean则应该使用singleton作用域。
+
+在 Spring2.0中除了以前的Singleton和Prototype外又加入了三个新的web作用域，分别为request、session和 global session。如果你希望容器里的某个bean拥有其中某种新的web作用域，除了在bean级上配置相应的scope属性，还必须在容器级做一个额外 的初始化配置。即在web应用的web.xml中增加这么一个ContextListener： org.springframework.web.context.request.RequestContextListener 以上是针对Servlet 2.4以后的版本。
+
+spring 默认scope 是单例模式
+
+这样只会创建一个Action对象
+
+每次访问都是同一个Action对象，数据不安全
+
+struts2 是要求 每次次访问 都对应不同的Action
+
+scope="prototype" 可以保证 当有请求的时候 都创建一个Action对象
+有状态bean和无状态bean是在说什么
+https://blog.csdn.net/bingjing12345/article/details/9794945
+http://chengtong-java.iteye.com/blog/2209359
+annotation之@Autowired、@Inject、@Resource三者区别
+https://www.cnblogs.com/pjfmeng/p/7551340.html
+https://blog.csdn.net/u012581453/article/details/53709623
+是为了让系统能够识别相应的注解。
+
+例如：
+
+1、如果想使用@Autowired注解，那么就必须事先在 Spring 容器中声明 AutowiredAnnotationBeanPostProcessor Bean。
+
+传统声明方式如下：
+<bean class="org.springframework.beans.factory.annotation. AutowiredAnnotationBeanPostProcessor "/> 
+
+2、如果想使用@ Resource 、@ PostConstruct、@ PreDestroy等注解就必须声明CommonAnnotationBeanPostProcessor  Bean。
+
+3、如果想使用@PersistenceContext注解，就必须声明PersistenceAnnotationBeanPostProcessor的Bean。
+
+4、如果想使用@Required的注解，就必须声明RequiredAnnotationBeanPostProcessor的Bean。
+
+
+
+以上这些注解是很常用的，如果按照传统的方式进行配置将会非常繁琐，所以Spring给我们提供了一个简便的方式：<context:annotation-config/>，使用该元素可以自动声明以上注解。
+
+注：由于<context:component-scan base-package=”xx.xx”/>也包含了自动注入上述Bean的功能，所以<context:annotation-config/> 可以省略。如果两者都进行了配置，则只有前者有效。
+
+
+
+注：
+
+<context:annotation-config> 是用于激活那些已经在spring容器里注册过的bean（无论是通过xml的方式还是通过package sanning的方式）上面的注解。
+
+<context:component-scan>除了具有<context:annotation-config>的功能之外，<context:component-scan>还可以在指定的package下扫描以及注册javabean 。
+Spring任务调度<task:scheduled-tasks>【含cron参数详解】
+https://blog.csdn.net/kollyqaq/article/details/51191047
+详解JDK 5 Annotation 注解之@Target的用法介绍
+https://blog.csdn.net/snakemoving/article/details/74364351
+ JDK5.0新特性Annotation之@Retention注解 
+https://blog.csdn.net/jadyer/article/details/6219252
+【SpringMVC】<context:include-filter>和<context:exclude-filter>使用时要注意的地方
+https://blog.csdn.net/channingzhao/article/details/52725015
+File file=new File(".")
+仅加一个点，表示当前目录。
+补充几点：
+
+Java中的File类的作用就是一个文件或目录的抽象表示，当然这里是表示目录的，
+
+可以进一步用exists()和isDirectory()方法判断。
+
+猜想这里是获取当前目录，要获得真实路径，可用该对象的getAbsolutePath()方法。
+HTTP中的重定向和请求转发的区别
+https://blog.csdn.net/meiyalei/article/details/2129120
+spring实战-Spring中Filter以及处理Exception方式
+https://blog.csdn.net/tidu2chengfo/article/details/77411849
+springMVC之mvc:interceptors拦截器的用法
+http://www.cnblogs.com/lcngu/p/7096597.html
+阅读数：12078
+request.getRemoteAddr()是获得客户端的ip地址。
+request.getRemoteHost()是获得客户端的主机名。
+玩转Spring！从拒绝Filter开始
+https://blog.csdn.net/yizhenn/article/details/53326186
+SpringMVC的拦截器（Interceptor）和过滤器（Filter）的区别与联系
+https://blog.csdn.net/xiaoyaotan_111/article/details/53817918
+https://blog.csdn.net/angel_g/article/details/53678187
+SpringMVC框架中的过滤器设置
+https://blog.csdn.net/jcw_275240222/article/details/51614614
+在SpringMVC中使用过滤器（Filter）过滤容易引发XSS的危险字符
+http://blog.51cto.com/983836259/1880278
+继承HttpServletRequestWrapper以实现在Filter中修改HttpServletRequest的参数
+https://www.zifangsky.cn/677.html
+jsp中setAttribute,getAttribute和getParameter用法
+https://blog.csdn.net/explorewen/article/details/2753251
+https://blog.csdn.net/qinnimei/article/details/47722067
+简单理解设计模式之装饰者模式
+https://blog.csdn.net/yqynsmile/article/details/52673529
+关于Cookie的原理、作用，区别以及使用
+https://blog.csdn.net/u014753892/article/details/52821268
+js:var options = options || {};这个语句是一个赋值或者初始化语句。
+该语句在options已经被初始化过后options的值不变，即执行var options = options这一部分。
+当options未被初始化，即typeof options = 'undefined'时，执行后面部分即var options = {}来初始化一个对象
+JavaWeb学习总结(十二)——Session
+https://www.cnblogs.com/xdp-gacl/p/3855702.html
+springMVC--4种映射处理器handlerMapping
+https://blog.csdn.net/xinruyulu/article/details/62883386
+java Map及Map.Entry详解
+https://blog.csdn.net/e01014165/article/details/51510872
+处理器拦截器（HandlerInterceptor）详解
+https://www.jianshu.com/p/1e8d088c2be9
+从SpringMVC来看适配器模式
+https://blog.csdn.net/u010288264/article/details/53835185
+<? extends SomeClass>与<T extends SomeClass>的区别
+https://blog.csdn.net/cgf1993/article/details/50754584
+详解 hibernate mapping配置
+http://www.jb51.net/article/115130.htm
+java数据类型与各数据库类型映射一览表
+https://blog.csdn.net/dagouaofei/article/details/5658245
+对基础数据执行任何算术或者按位运算，只要他们比int类型小（char,byte,short)，那么在正式运算之前，那些值会自动转换成int.要注意类型问题.
+这是由于break 本身只
+能中断最内层的循环（对于continue 同样如此）。
+当然，若想在中断循环的同时退出方法，简单地用一个return 即可。
+
+类似this()和super()这样的方法被称为构造方法，顾名思义，他的作用就是在JVM堆中构建出一个指定类型的对象，如果你调用了两个这种形式的方法，岂不是代表着构建出了两个对象。
+
+同理，为了避免构建出两个对象这种问题的出现，Java在编译时对这种情况做了强校验，用户不能再同一个方法内调用多次this()或super()，同时为了避免对对象本身进行操作时，对象本身还未构建成功(也就找不到对应对象),所以对this()或super()的调用只能在构造方法中的第一行实现，防止异常。
+
+在普通的成员方法中，如果调用super()或者this()，你是想要重新创建一个对象吗？抱歉Java为了保证自身对象的合理性，不允许你做这样的操作。
+父类，子类的初始化顺序：执行子类的static代码块，并且只执行一次（因为类只加载一次）；
+
+3，执行父类的类成员初始化，并且是从上往下按出现顺序执行（在debug时可以看出）。
+
+4，执行父类的构造函数；1，在类加载的时候执行父类的static代码块，并且只执行一次（因为类只加载一次）；
+
+2，执行子类的static代码块，并且只执行一次（因为类只加载一次）；
+
+3，执行父类的类成员初始化，并且是从上往下按出现顺序执行（在debug时可以看出）。
+
+4，执行父类的构造函数；
+
+5，执行子类的类成员初始化，并且是从上往下按出现顺序执行。
+
+6，执行子类的构造函数。
+

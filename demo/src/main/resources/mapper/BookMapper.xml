@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "- //mybatis . org//DTD Mapper3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peilw.child.mapper">
+    <insert id="addBook" parameterType="com.peilw.child.entity.Book ">
+        INSERT INTO book(name , author) VALUES (#{name} , #{author})
+        </insert>
+    <delete id="deleteBookByid" parameterType="int">
+        DELETE FROM book WHERE Id=#{id}
+        </delete>
+    <update id="updateBookByid" parameterType="com.peilw.child.entity.Book ">
+        UPDATE book set name=#{name} , author=#{author} WHERE id=#{id}
+        </update>
+    <select id="getBookByid" parameterType="int" resultType="com.peilw.child.entity.Book ">
+        SELECT * FROM book WHERE id=#{id}
+        </select>
+    <select id="getAllBooks" resultType="com.peilw.child.entity.Book">
+        SELECT * FROM book
+        </select>
+</mapper>
