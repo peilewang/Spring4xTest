@@ -62,7 +62,7 @@ public class SortDemo {
             if (i < j) {
                 int t = arr[j];
                 arr[j] = arr[i];
-                arr[j] = t;
+                arr[i] = t;
             }
         }
         //将基准位与i和j相等的位置交换
