@@ -14,7 +14,7 @@
   <url>http://www.example.com</url>
 
   <properties>
-      <srping.version>4.2.4.RELEASE</srping.version>
+      <srping.version>5.2.4.RELEASE</srping.version>
       <!-- mybatis版本号 -->
       <mybatis.version>3.4.2</mybatis.version>
       <!-- log4j日志文件管理包版本 -->
