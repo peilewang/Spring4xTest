@@ -140,4 +140,7 @@ public class ArrayQueue<T> implements Serializable {
             return sb.delete(len - 2, len).append("]").toString();
         }
     }
+    public static void main(String[] args){
+
+    }
 }
