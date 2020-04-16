@@ -40,7 +40,7 @@ public class SortDemo {
         int low = 0;
         int high = a.length - 1;
         while (low <= high) {
-            int middle = low + high / 2;
+            int middle = (low + high) / 2;
             if (a[middle] < b) {
                 low = middle + 1;
             } else if (a[middle] > b) {
@@ -86,7 +86,7 @@ public class SortDemo {
                 if (a[j] > a[j + 1]) {
                     int temp = a[j];
                     a[j] = a[j + 1];
-                    a[i + 1] = temp;
+                    a[j+ 1] = temp;
                 }
             }
         }
