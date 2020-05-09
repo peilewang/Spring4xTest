@@ -42,7 +42,7 @@ public class Reverse {
         if (head == null || head.next == null) return;
         Node cur = null;
         Node next = null;
-        cur = head.next.next;
+        cur = head.next;
         head.next.next = null;
         while (cur != null) {
             next = cur.next;
@@ -69,9 +69,9 @@ public class Reverse {
             h = h.getNext();
         }
         // 调用反转方法
-        //head = Reverse(head);
+        head = Reverse(head);
         //ReverseInsert(head);
-        head = RecursiveReverse(head);
+       // head = RecursiveReverse(head);
         System.out.println("\n**************************");
         // 打印反转后的结果
         while (null != head) {
