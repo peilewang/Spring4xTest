@@ -14,4 +14,13 @@ public class Node<T, U extends Node> {
     public Node(){
 
     }
+
+    @Override
+    public String toString() {
+        return "Node{" + "data=" + data +  '}';
+    }
+
+    public Node(T data){
+        this.data = data;
+    }
 }
