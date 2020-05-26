@@ -47,7 +47,18 @@ public class SortDemo {
         }
         return a;
     }
-
+    //冒泡排序
+    public static void bubbleSort(int[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = 0; j < a.length - 1 - i; j++) {
+                if (a[j] > a[j + 1]) {
+                    int temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+                }
+            }
+        }
+    }
     //希尔排序
     public static int[] shellSort(int[] arr) {
         //step:步长
@@ -67,19 +78,6 @@ public class SortDemo {
             }
         }
         return arr;
-    }
-
-    //冒泡排序
-    public static void bubbleSort(int[] a) {
-        for (int i = 0; i < a.length - 1; i++) {
-            for (int j = 0; j < a.length - 1 - i; j++) {
-                if (a[j] > a[j + 1]) {
-                    int temp = a[j];
-                    a[j] = a[j + 1];
-                    a[j + 1] = temp;
-                }
-            }
-        }
     }
 
     //二分查找
